@@ -2,6 +2,8 @@ package com.example.board_real.service;
 
 import com.example.board_real.domain.posts.Posts;
 import com.example.board_real.domain.posts.PostsRepository;
+import com.example.board_real.domain.user.User;
+import com.example.board_real.domain.user.UserRepository;
 import com.example.board_real.web.dto.posts.PostsListResponseDto;
 import com.example.board_real.web.dto.posts.PostsResponseDto;
 import com.example.board_real.web.dto.posts.PostsSaveRequestDto;
@@ -20,6 +22,7 @@ public class PostsService {
 
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
+
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 

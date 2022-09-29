@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Builder
 @Data
 @Entity
-public class User extends BaseTimeEntity {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

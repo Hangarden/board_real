@@ -1,4 +1,4 @@
-package com.example.board_real.web;
+package com.example.board_real.web.controller;
 
 import com.example.board_real.service.PostsService;
 import com.example.board_real.web.dto.posts.PostsResponseDto;
@@ -32,6 +32,18 @@ public class IndexController {
         model.addAttribute("post", dto);
         return "posts-update";
     }
+
+    @GetMapping("/users/add")
+    public String UserSave() {
+        return "users/addUserForm";
+    }
+
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login/loginForm";
+    }
+
+
 
     /* 글 상세보기 */
 //    @GetMapping("/posts/read/{id}")

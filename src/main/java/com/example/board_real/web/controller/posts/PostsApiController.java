@@ -1,4 +1,4 @@
-package com.example.board_real.web;
+package com.example.board_real.web.controller.posts;
 
 import com.example.board_real.service.PostsService;
 import com.example.board_real.web.dto.posts.PostsResponseDto;
