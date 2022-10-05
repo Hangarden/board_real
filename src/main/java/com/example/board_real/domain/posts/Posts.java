@@ -1,7 +1,7 @@
 package com.example.board_real.domain.posts;
 
 import com.example.board_real.domain.BaseTimeEntity;
-import com.example.board_real.domain.Comment;
+import com.example.board_real.domain.comment.Comment;
 import com.example.board_real.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,17 +25,20 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private User username;
-
-    @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @OrderBy("id asc")
-    private List<Comment> comments;
     private String author;
 
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+    @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("id asc")
+    private List<Comment> comments;
 
     @Builder
     public Posts(String title, String content, String author, Integer view) {
