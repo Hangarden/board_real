@@ -1,6 +1,7 @@
 package com.example.board_real.domain;
 
 import com.example.board_real.domain.posts.Posts;
+import com.example.board_real.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,17 +26,14 @@ public class Comment {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String comment; // 댓글 내용
 
-    @Column(name = "created_date")
-    @CreatedDate
-    private String createdDate;
-
-    @Column(name = "modified_date")
-    @LastModifiedDate
-    private String modifiedDate;
 
     @ManyToOne
     @JoinColumn(name = "posts_id")
     private Posts posts;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User username;
 
     /* 댓글 수정 */
     public void update(String comment) {

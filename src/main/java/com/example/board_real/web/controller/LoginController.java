@@ -21,18 +21,18 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@Valid @RequestBody LoginForm form, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "../dto/loginForm";
-        }
-
+//        if (bindingResult.hasErrors()) {
+//            return "login";
+//        }
+//        log.info("login? {}, {}", form.getUsername(), form.getPassword());
         User loginMember = loginService.login(form.getUsername(), form.getPassword());
 
         log.info("login? {}", loginMember);
         if (loginMember == null) {
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "login/loginForm";
+            return "login";
         }
-        return "redirect:/";
+        return "/";
     }
 }
 

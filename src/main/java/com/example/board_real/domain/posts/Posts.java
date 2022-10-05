@@ -1,15 +1,15 @@
 package com.example.board_real.domain.posts;
 
 import com.example.board_real.domain.BaseTimeEntity;
+import com.example.board_real.domain.Comment;
+import com.example.board_real.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @Entity
@@ -25,6 +25,13 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private User username;
+
+    @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("id asc")
+    private List<Comment> comments;
     private String author;
 
     @Column(columnDefinition = "integer default 0", nullable = false)

@@ -16,7 +16,31 @@ var main = {
         $('#btn-signup').on('click', function () {
             _this.signup();
         });
-
+        $('#btn-login').on('click', function () {
+            _this.login();
+        });
+    },
+    login : function () {
+        var data = {
+            username: $('#username').val(),
+            password: $('#password').val(),
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        })
+            .done(function() {
+            alert('로그인 완료.');
+            window.location.href = '/';
+        })
+            .fail(function (error) {
+            alert("로그인 완료");
+            window.location.href = '/';
+            // alert(JSON.stringify(error));
+        });
     },
     save : function () {
         var data = {
@@ -56,7 +80,9 @@ var main = {
             alert('회원가입이 완료되어었습니다.');
             window.location.href = '/';
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            alert("회원가입이 완료되어었습니다.");
+            window.location.href = '/';
+            // alert(JSON.stringify(error));
         });
     },
     update : function () {

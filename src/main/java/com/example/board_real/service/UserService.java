@@ -25,6 +25,7 @@ public class UserService {
         user.setId(++sequence);
         log.info("save: user={}", user);
         store.put(user.getId(), user); //(K key, V value)
+        log.info("store {}", store.values());
         return userRepository.save(user);
     }
 
@@ -33,15 +34,15 @@ public class UserService {
         return store.get(id);
     }
 
-    @Transactional
-    public Optional<User> findByLoginId(String loginId) {
-        return findAll().stream()
-                .filter(u -> u.getId().equals(loginId))
-                .findFirst();
+    public List<User> findAll() {
+        System.out.println(store.values());
+        return new ArrayList<>(store.values());
     }
 
-    public List<User> findAll() {
-        return new ArrayList<>(store.values());
+    public Optional<User> findByLoginId(String username) {
+        return findAll().stream()
+                .filter(u -> u.getUsername().equals(username))
+                .findFirst();
     }
 
     public void clearStore() {
